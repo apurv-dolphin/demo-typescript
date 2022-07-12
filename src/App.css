@@ -45,3 +45,12 @@
 .dropdown {
   margin: 50px;
 }
+
+.List {
+  float: left;
+  text-align: left;
+}
+
+.heading {
+  float: left;
+}

@@ -107,7 +107,7 @@ export default function Product() {
           {currentPosts.map((newdata) => {
             return (
               <Col
-                className="col-md-3 my-2"
+                className="col-md-4 my-2"
                 key={newdata.id}
                 style={{ textAlign: "left" }}
               >
