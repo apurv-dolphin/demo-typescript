@@ -7,6 +7,7 @@ import {
   NavDropdown,
   Row,
 } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import Header from "./Header";
 import CustomPagination from "./Pagination";
 
@@ -121,7 +122,9 @@ export default function Product() {
                       <br />
                       Slug :- {newdata.slug}
                     </Card.Text>
-                    <Button variant="primary">View details</Button>
+                    <Link to={`/product/${newdata.slug}`}>
+                      <Button variant="primary">View details</Button>
+                    </Link>
                   </Card.Body>
                 </Card>
               </Col>
