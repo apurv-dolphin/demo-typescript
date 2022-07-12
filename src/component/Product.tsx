@@ -22,6 +22,8 @@ type ProductData = {
 export default function Product() {
   const [data, setData] = useState<ProductData[]>([]);
   const [, setOrder] = useState<string>("");
+  const [searchInput, setSearchInput] = useState([]);
+  const [filter, setFilter] = useState<string>("");
   const [page, setPage] = useState<number>(1);
   const PER_PAGE = 10;
 
@@ -53,11 +55,26 @@ export default function Product() {
     setData(sortdscData);
   };
 
+  const handleSearch = (e: any) => {
+    e.preventDefault();
+    if (e.target.value === "") {
+      setData(searchInput);
+    } else {
+      const filterdata = data.filter((elem) =>
+        elem.name.toLowerCase().includes(e.target.value.toLowerCase())
+      );
+      console.log(filterdata);
+      setData(filterdata);
+    }
+    setFilter(e.target.value);
+  };
+
   const apiGet = async () => {
     await fetch("https://60ff90a3bca46600171cf36d.mockapi.io/api/products")
       .then((res) => res.json())
       .then((res) => {
         setData(res);
+        setSearchInput(res);
       });
   };
 
@@ -67,7 +84,7 @@ export default function Product() {
 
   return (
     <>
-      <Header />
+      <Header filter={filter} handleSearch={handleSearch} />
 
       <div className="dropdown">
         <NavDropdown

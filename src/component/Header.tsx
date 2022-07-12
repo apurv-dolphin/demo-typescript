@@ -1,7 +1,11 @@
 import { Button, Container, Form, Nav, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-export default function Header() {
+type SearchProps = {
+  filter: string;
+  handleSearch: (e: any) => void;
+};
+export default function Header(props: SearchProps) {
   return (
     <>
       <br />
@@ -28,6 +32,8 @@ export default function Header() {
                 placeholder="Search"
                 className="me-2"
                 aria-label="Search"
+                value={props.filter}
+                onChange={(e) => props.handleSearch(e)}
               />
               <Button variant="dark">Search</Button>
             </Form>
