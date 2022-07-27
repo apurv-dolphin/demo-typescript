@@ -26,7 +26,7 @@ export default function Product() {
   const [searchInput, setSearchInput] = useState([]);
   const [filter, setFilter] = useState<string>("");
   const [page, setPage] = useState<number>(1);
-  const PER_PAGE = 10;
+  const PER_PAGE: number = 10;
 
   // pagination method start
   const indexofLastpost = page * PER_PAGE;
@@ -64,7 +64,6 @@ export default function Product() {
       const filterdata = data.filter((elem) =>
         elem.name.toLowerCase().includes(e.target.value.toLowerCase())
       );
-      console.log(filterdata);
       setData(filterdata);
     }
     setFilter(e.target.value);

@@ -13,7 +13,7 @@ type ProductSulgData = {
   id: number;
 };
 
-export default function ProductList(props: ProductSulgData) {
+export default function ProductList() {
   const [user, setUser] = useState<ProductSulgData[]>([]);
 
   const { slug } = useParams();

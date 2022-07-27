@@ -11,7 +11,7 @@ export default function Header(props: SearchProps) {
       <br />
       <Navbar bg="primary" variant="dark">
         <Container fluid>
-          <Navbar.Brand href="#">Navbat</Navbar.Brand>
+          <Navbar.Brand href="#">Navbar</Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
             <Nav
