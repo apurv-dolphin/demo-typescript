@@ -111,9 +111,9 @@ export default function Product() {
                 style={{ textAlign: "left" }}
               >
                 <Card>
-                  <Card.Img variant="top" src={newdata.image} />
+                  <Card.Img variant="top" src={newdata?.image} />
                   <Card.Body>
-                    <Card.Title>Name :- {newdata.name}</Card.Title>
+                    <Card.Title>Name :- {newdata.name}</Card.Title> 
                     <Card.Text>
                       Price :- {newdata.price}
                       <br />
@@ -121,7 +121,7 @@ export default function Product() {
                       <br />
                       Slug :- {newdata.slug}
                     </Card.Text>
-                    <Link to={`/product/${newdata.slug}`}>
+                    <Link to={`/product/slug=${newdata.slug}`}>
                       <Button variant="primary">View details</Button>
                     </Link>
                   </Card.Body>
