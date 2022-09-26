@@ -1,7 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { Button, Overlay, Tooltip } from "react-bootstrap";
 
 export default function ScrollToTop() {
   const [topButton, setTopButtton] = useState<boolean>(false);
+  const [show, setShow] = useState(false);
+  const target = useRef(null);
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
@@ -23,22 +26,37 @@ export default function ScrollToTop() {
   return (
     <div>
       {topButton && (
-        <button
-          style={{
-            position: "fixed",
-            bottom: "50px",
-            height: "50px",
-            right: "50px",
-            width: "50px",
-            fontSize: "50px",
-            justifyContent: "center",
-          }}
-          onClick={scrollUp}
-        >
-          <div className="seticon">
-            <h1>^</h1>
-          </div>
-        </button>
+        <>
+          <Button
+            ref={target}
+            onMouseEnter={() => setShow(true)}
+            onMouseLeave={() => setShow(false)}
+            style={{
+              position: "fixed",
+              bottom: "50px",
+              height: "50px",
+              right: "50px",
+              fontSize: "50px",
+              border: "1px solid black",
+              background: "oldlace",
+            }}
+            onClick={() => {
+              setShow(false);
+              scrollUp();
+            }}
+          >
+            <div className="seticon">
+              <h1 style={{ color: "black" }}>^</h1>
+            </div>
+          </Button>
+          <Overlay target={target.current} show={show} placement="top">
+            {(props) => (
+              <Tooltip id="overlay-example" {...props}>
+                scroll to top
+              </Tooltip>
+            )}
+          </Overlay>
+        </>
       )}
     </div>
   );

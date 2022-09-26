@@ -25,6 +25,9 @@ export default function Header(props: SearchProps) {
               <Nav.Link as={Link} to="/product">
                 Product
               </Nav.Link>
+              <Nav.Link as={Link} to="/contact">
+                Contact
+              </Nav.Link>
             </Nav>
             <Form className="d-flex">
               <Form.Control
