@@ -1,4 +1,5 @@
-import { Button, Container, Form, Nav, Navbar } from "react-bootstrap";
+import { Box} from "@chakra-ui/react";
+import { Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 type SearchProps = {
@@ -8,28 +9,19 @@ type SearchProps = {
 export default function Header(props: SearchProps) {
   return (
     <>
-      <br />
-      <Navbar bg="primary" variant="dark">
-        <Container fluid>
-          <Navbar.Brand href="#">Navbar</Navbar.Brand>
-          <Navbar.Toggle aria-controls="navbarScroll" />
-          <Navbar.Collapse id="navbarScroll">
-            <Nav
-              className="me-auto my-2 my-lg-0"
-              style={{ maxHeight: "100px" }}
-              navbarScroll
-            >
-              <Nav.Link as={Link} to="/">
-                Home
-              </Nav.Link>
-              <Nav.Link as={Link} to="/product">
-                Product
-              </Nav.Link>
-              <Nav.Link as={Link} to="/contact">
-                Contact
-              </Nav.Link>
-            </Nav>
-            <Form className="d-flex">
+      <Box className="NavBar">
+        <Box display={"flex"}>
+        <Box className="navbar-brand">
+          Navbar
+        </Box>
+        <Box className="Nav-inner">
+          <Box className="nav-data" as={Link} to="/">Home</Box>
+          <Box className="nav-data" as={Link} to="/product">Product</Box>
+          <Box className="nav-data" as={Link} to="/contact">Contact</Box>
+        </Box>
+        </Box>
+        <Box className="nav-search">
+        <Form className="d-flex">
               <Form.Control
                 type="search"
                 placeholder="Search"
@@ -40,9 +32,8 @@ export default function Header(props: SearchProps) {
               />
               <Button variant="dark">Search</Button>
             </Form>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
+        </Box>
+      </Box>
     </>
   );
 }

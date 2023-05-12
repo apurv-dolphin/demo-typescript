@@ -6,14 +6,15 @@ import {
   FormHelperText,
   FormLabel,
   Heading,
-  Image,
   Input,
   Text,
+  useDisclosure,
   VStack,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { contact } from "../redux/action/action";
+import DisplayInfo from "./DisplayInfo";
 import Header from "./Header";
 
 export default function ContactForm() {
@@ -23,6 +24,8 @@ export default function ContactForm() {
     email: "",
     contactno: "",
   });
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const cancelRef = React.useRef()
 
   const dispatch = useDispatch();
 
@@ -39,7 +42,6 @@ export default function ContactForm() {
     preventDefault: () => void;
   }) => {
     e.preventDefault();
-    console.log("__form", formData);
     dispatch(contact(formData));
     SetFormData({
       firstname: "",
@@ -47,7 +49,10 @@ export default function ContactForm() {
       email: "",
       contactno: "",
     });
+    onOpen();
   };
+
+
   return (
     <>
       <Header
@@ -68,15 +73,7 @@ export default function ContactForm() {
         rounded="md"
         bgImage="url('https://p4.wallpaperbetter.com/wallpaper/9/519/764/mountains-best-for-desktop-background-wallpaper-preview.jpg')"
       >
-        <Box color="#fff">
-         <Box>
-         <Image
-            boxSize="50px"
-            src="https://cdn-icons-png.flaticon.com/512/88/88450.png"
-            alt="contact form"
-            backgroundColor={"#fff"}
-          />
-         </Box>
+        <Box style={{ color: "#fff", display: "flex" }}>
           <VStack spacing={1} align={["flex-start", "center"]} w="full">
             <Heading>Contact Form</Heading>
             <Text>Please Fill this form</Text>
@@ -90,6 +87,7 @@ export default function ContactForm() {
                 <Input
                   type="text"
                   name="firstname"
+                  value={formData.firstname}
                   borderColor="#fff"
                   onChange={handleChange}
                 />
@@ -103,6 +101,7 @@ export default function ContactForm() {
                   type="text"
                   name="lastname"
                   borderColor="#fff"
+                  value={formData.lastname}
                   onChange={handleChange}
                 />
                 <FormHelperText color="#fff">
@@ -115,6 +114,7 @@ export default function ContactForm() {
                   type="email"
                   name="email"
                   borderColor="#fff"
+                  value={formData.email}
                   onChange={handleChange}
                 />
                 <FormHelperText color="#fff">
@@ -127,6 +127,7 @@ export default function ContactForm() {
                   type="text"
                   name="contactno"
                   borderColor="#fff"
+                  value={formData.contactno}
                   onChange={handleChange}
                 />
                 <FormHelperText color="#fff">
@@ -144,6 +145,7 @@ export default function ContactForm() {
           </Box>
         </div>
       </Box>
+      <DisplayInfo isOpen={isOpen} onClose={onClose} cancelRef={cancelRef} />
     </>
   );
 }

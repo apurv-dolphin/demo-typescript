@@ -17,8 +17,6 @@ export default function ProductList() {
   const [user, setUser] = useState<ProductSulgData[]>([]);
 
   const { slug } = useParams();
-  console.log("__ak" ,  useParams());
-  
 
   const apiGet = async () => {
     await fetch(
